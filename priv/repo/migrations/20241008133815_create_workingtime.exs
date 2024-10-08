@@ -1,0 +1,16 @@
+defmodule Something.Repo.Migrations.CreateWorkingtime do
+  use Ecto.Migration
+
+  def change do
+    create table(:workingtime) do
+      add :start, :naive_datetime
+      add :end, :naive_datetime
+      add :user, references(:users, on_delete: :nothing)
+      add :id, :id
+
+      timestamps(type: :utc_datetime)
+    end
+
+    create index(:workingtime, [:user])
+  end
+end
